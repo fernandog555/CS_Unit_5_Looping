@@ -1,104 +1,83 @@
 using System;
-namespace HomeSales
+using static System.Console;
+using System.Globalization;
+class HomeSales
 {
-class Program
-{
-  static void Main (string[] args)
-  {
-    char ch = 'D';
-    int sum = 0, sumD = 0, sumE = 0, sumF = 0, value, highestSale;
-    string highestSalesPerson;
-    while (true)
-      {
-        Console.WriteLine ("Enter the" + "initial for salesperson "
-                           + "D,E,F and Z to terminate");
-        string input = Console.ReadLine ().Trim ();
-        if (!string.IsNullOrEmpty (input))
+   static void Main()
+   {
+     int Danielle = 0;
+     int Edward = 0;
+     int Francis = 0; 
+     int total = 0;
+     const string QUIT = "Z";
+     const string QUITLOWER = "z";
+     string user;
+     WriteLine("Enter a salesperson initial (D,E, or F): ");
+     user = ReadLine();
+
+     if (user == "d" || user == "D")
           {
-            ch = Convert.ToChar (input);
+            WriteLine("Enter amount of sale");
+            Danielle += Convert.ToInt32(ReadLine());
           }
-        else
+    else if (user == "e" || user == "E")
           {
-            ch = 'w';
+            WriteLine("Enter amount of sale");
+            Edward += Convert.ToInt32(ReadLine());
           }
-        if (ch == 'd' || ch == 'D')
+    else if (user == "f" || user == "F")
           {
-            Console.WriteLine ("Please" + "enter the sale amount");
-            value = Convert.ToInt32 (Console.ReadLine ());
-            sum = sum + value;
-            sumD = sumD + value;
+            WriteLine("Enter amount of sale");
+            Francis += Convert.ToInt32(ReadLine());
           }
-        else if (ch == 'e' || ch == 'E')
-          {
-            Console.WriteLine ("Please" + "enter the sale amount");
-            value = Convert.ToInt32 (Console.ReadLine ());
-            sum = sum + value;
-            sumE = sumE + value;
-          }
-        else if (ch == 'f' || ch == 'F')
-          {
-            Console.WriteLine ("Please" + "enter the sale amount");
-            value = Convert.ToInt32 (Console.ReadLine ());
-            sum = sum + value;
-            sumF = sumF + value;
-          }
-        else if (ch == 'z' || ch == 'Z')
-          {
-            break;
-          }
-        else
-          {
-            Console.WriteLine ("Sorry - invalid salesperson");
-          }
-      }
-
-    if (sumD > sumE && sumD > sumF)
-
-      {
-
-        highestSalesPerson = "Danielle";
-
-        highestSale = sumD;
-      }
-
-    else if (sumE > sumF)
-
-      {
-
-        highestSalesPerson = "Edward";
-
-        highestSale = sumE;
-      }
-
-    else
-
-      {
-
-        highestSalesPerson = "Francis";
-
-        highestSale = sumF;
-      }
-
-    Console.WriteLine ("\nTotal sale" + "of Danielle is: {0:c}", sumD);
-
-    Console.WriteLine ("\nTotal sale" + "of Edward is: {0:c}", sumE);
-
-    Console.WriteLine ("\nTotal sale" + "of Francis is: {0:c}", sumF);
-
-    if (sumD.Equals (sumE) || sumD.Equals (sumF) || sumE.Equals (sumF))
-      {
-        Console.WriteLine (
-            "\nThere was a tie"); // Case 2: The program indicates there is tie
-      }
     else
       {
-        Console.WriteLine ("\nHighest" + "sales person is :{0}"
-                               + "\nHighest sale is {1:c}",
-                           highestSalesPerson, highestSale);
-        Console.WriteLine ("\nGran" + "Total sale is: {0:c}", sum);
+      WriteLine("Sorry - invalid salesperson");
       }
-    Console.ReadLine ();
-  }
-}
+    
+     
+     while (user != QUIT && user != QUITLOWER)
+      {
+        WriteLine("Enter next salesperson initial or Z to quit: ");
+        user = ReadLine();
 
+        if (user == "d" || user == "D")
+          {
+            WriteLine("Enter amount of sale");
+            Danielle += Convert.ToInt32(ReadLine());
+          }
+        if (user == "e" || user == "E")
+          {
+            WriteLine("Enter amount of sale");
+            Edward += Convert.ToInt32(ReadLine());
+          }
+        if (user == "f" || user == "F")
+          {
+            WriteLine("Enter amount of sale");
+            Francis += Convert.ToInt32(ReadLine());
+          }
+      }
+      total = Danielle + Edward + Francis;
+      WriteLine("Danielle sold      {0}",Danielle.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+      WriteLine("Edward sold      {0}",Edward.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+      WriteLine("Francis sold      {0}",Francis.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+      WriteLine("Total sales were     {0}",total.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+      if (Danielle > Edward && Danielle > Francis)
+        {
+          WriteLine("Danielle sold the most");
+        }
+      else if (Edward > Danielle && Edward > Francis)
+        {
+          WriteLine("Edward sold the most");
+        }
+      else if (Francis > Danielle && Francis > Edward)
+        {
+          WriteLine("Francis sold the most");
+        }
+      else
+        {
+          WriteLine("There was a tie");
+        }
+
+   }
 }
