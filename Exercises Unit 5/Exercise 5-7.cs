@@ -1,20 +1,15 @@
 using System;
-
-public class MultiplicationTable
+using static System.Console;
+class MultiplicationTable
 {
-  public static void
-  Main ()
-  {
-    int j, n;
-
-    Console.Write ("Input an integer number: ");
-
-    n = Convert.ToInt32 (Console.ReadLine ());
-
-    Console.Write ("\n");
-    for (j = 1; j <= 10; j++)
-      {
-        Console.Write ("{0} X {1} = {2} \n", j, n, n * j);
-      }
-  }
+   static void Main()
+   {      
+            int entry = 0;
+            Write("Enter number:");
+            entry = int.Parse(ReadLine());
+            for (int i = 1; i <= 10; ++i)
+            {
+                WriteLine("{0,3} x {1,2} = {2}",i,entry,i*entry);
+            }
+   }
 }
