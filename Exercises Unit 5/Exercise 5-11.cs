@@ -1,50 +1,49 @@
 using System;
-public class TippingTable3
+using static System.Console;
+using System.Globalization;
+class TippingTable3
 {
-  public static void
-  Main ()
-  {
-    double dinnerPrice;
-    double tipRate;
-    double tip;
+   static void Main()
+   {
+     double dinnerPrice = 10.00;
+            double tipRate;
+            double tip;
+            double lowRate = 0.10;
+            double maxRate = 0.25;
+            double maxDinner = 100.00;
+            const double TIPSTEP = 0.05;
+            const double DINNERSTEP = 10.00;
 
-    double LOWRATE;
-    double MAXRATE;
-    const double TIPSTEP = 0.05;
-    double MAXDINNER;
-    const double DINNERSTEP = 10.00;
+            WriteLine("(0.10 = 10%)");
+            Write("lowest tip rate:");
+            lowRate = double.Parse(ReadLine());
+            Write("max tip rate:");
+            maxRate = double.Parse(ReadLine());
+            Write("min dinner price:");
+            dinnerPrice = double.Parse(ReadLine());
+            Write("max dinner price:");
+            maxDinner = double.Parse(ReadLine());
 
-    Console.Write ("What is lowest tipping percentage ");
-    LOWRATE = Convert.ToDouble (Console.ReadLine ());
+            Write("   Price");
+            for (tipRate = lowRate; tipRate <= maxRate; tipRate += TIPSTEP)
+                Write("{0,8}", tipRate.ToString("F"));
+            tipRate = lowRate;
+            WriteLine();
+            WriteLine("----------------------------------------");
+            while(dinnerPrice <= maxDinner)
+            {
+                Write("{0, 8}", dinnerPrice.ToString("C"));
+                while(tipRate <= maxRate)
+                {
+                    tip = dinnerPrice * tipRate;
+                    Write("{0,8}", tip.ToString("F"));
+                    tipRate += TIPSTEP;
+                }
+                dinnerPrice += DINNERSTEP;
+                tipRate = lowRate;
+                WriteLine();
+            }
 
-    Console.Write ("What is Highest tipping percentage ");
-    MAXRATE = Convert.ToDouble (Console.ReadLine ());
-
-    Console.Write ("What is lowest restaurent bill ");
-    dinnerPrice = Convert.ToDouble (Console.ReadLine ());
-
-    Console.Write ("What is highest restaurent bill ");
-    MAXDINNER = Convert.ToDouble (Console.ReadLine ());
-    Console.Write (" Price");
-    for (tipRate = LOWRATE; tipRate <= MAXRATE; tipRate += TIPSTEP)
-      Console.Write ("{0, 8}", tipRate.ToString ("F"));
-    Console.WriteLine ();
-    Console.WriteLine ("----------------------------------------");
-
-    tipRate = LOWRATE;
-
-    while (dinnerPrice <= MAXDINNER)
-      {
-        Console.Write ("{0, 8}", dinnerPrice);
-        while (tipRate <= MAXRATE)
-          {
-            tip = dinnerPrice * tipRate;
-            Console.Write ("{0, 8}", tip.ToString ("F"));
-            tipRate += 0.05;
-          }
-        dinnerPrice += DINNERSTEP;
-        tipRate = LOWRATE;
-        Console.WriteLine ();
-      }
-  }
-}
+            WriteLine("--End--");
+        }
+    }
