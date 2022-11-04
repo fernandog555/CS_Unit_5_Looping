@@ -1,105 +1,43 @@
 using System;
-
-using System.Collections.Generic;
-
-using System.Linq;
-
-using System.Text;
-
-using System.Threading.Tasks;
-
-namespace GreenvileRevenue
-
+using static System.Console;
+using System.Globalization;
+class GreenvilleRevenue
 {
+   static void Main()
+   {
+     int contCurrYear;
+     int contLastYear;
+     WriteLine("Enter number of contestants this year: ");
+      contCurrYear = Convert.ToInt32(ReadLine());
+     if (contCurrYear > 30 || contCurrYear < 0)
+        {
+          WriteLine("Invalid Value - Enter number of contestants this year (0-30): ");
+          contCurrYear = Convert.ToInt32(ReadLine());
+        }
+     
+     WriteLine("Enter number of contestants last year: ");
+     contLastYear = Convert.ToInt32(ReadLine());
+     if (contLastYear > 30 || contLastYear < 0)
+        {
+          WriteLine("Invalid Value - Enter number of contestants this year (0-30): ");
+          contLastYear = Convert.ToInt32(ReadLine());
+        }
 
-class Program
+     double Profit = contLastYear * 25;
+     int twice = contCurrYear *2;
+     WriteLine("Revenue: {0}", Profit.ToString("C", CultureInfo.GetCultureInfo("en-US")));
 
-{
-
-  static void Main (string[] args)
-
-  {
-
-    int contLast, contCurr;
-
-    while (true)
-
+     if (twice < contLastYear)
       {
-
-        Console.WriteLine (
-            "Enter the number of contestants entered in last year's competition : ");
-
-        contLast = Int32.Parse (Console.ReadLine ());
-
-        if (contLast < 0 || contLast > 30)
-
-          {
-
-            Console.WriteLine ("Error. Please enter a value between 0 and 30.");
-          }
-
-        else
-
-          {
-
-            break;
-          }
+        WriteLine("The competition is more than twice as big this year!");
       }
-
-    while (true)
-
+     if (contCurrYear < contLastYear)
       {
-
-        Console.WriteLine (
-            "Enter the number of contestants entered in this year's competition : ");
-
-        contCurr = Int32.Parse (Console.ReadLine ());
-
-        if (contCurr < 0 || contCurr > 30)
-
-          {
-
-            Console.WriteLine ("Error. Please enter a value between 0 and 30.");
-          }
-
-        else
-
-          {
-
-            break;
-          }
+        WriteLine("The competition is bigger than ever!");
       }
-
-    if ((contLast >= 0) && (contLast <= 30) && (contCurr >= 0)
-        && (contCurr <= 30))
-
-      Console.WriteLine ("The revenue expected for this year's competition : $"
-                         + contCurr * 25 + '\n');
-
-    if (contCurr > contLast * 2)
-
-      Console.WriteLine (
-          "The competition is more than twice as big this year!\n");
-
-    else
-
-        if (contCurr > contLast && contCurr <= (contLast * 2))
-
-      Console.WriteLine ("The competition is bigger than ever!\n");
-
-    else
-
-        if (contCurr < contLast)
-
-      Console.WriteLine (
-          "A tighter race this year! Come out and cast your vote!\n");
-
-    else
-
-      Console.WriteLine ("Please enter a valid value\n");
-
-    Console.ReadLine ();
-  }
-}
-
+     if (contCurrYear > contLastYear)
+      {
+        WriteLine("A tighter race this year! Come out and cast your vote!");
+      }
+   }
 }
